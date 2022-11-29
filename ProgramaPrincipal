@@ -1,0 +1,73 @@
+ List<Contrato> list = new List<Contrato>();
+
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine(" ------------------------ Financeira ------------------------");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.Write("Entre com o número de contratos: ");
+            int n = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= n; i++)
+            {
+                Console.WriteLine();
+                Console.WriteLine($": ");
+                Console.Write("Pessoa Física ou Pessoa Jurídica [F/J]? ");
+                char escolha = char.Parse(Console.ReadLine());
+
+                switch (escolha)
+                {
+                    case 'F':
+                    case 'f':
+                        Console.WriteLine();
+                        Console.Write("Numero do contrato: ");
+                        int numero = int.Parse(Console.ReadLine());
+                        Console.Write("Nome do Contratante: ");
+                        string contratante = Console.ReadLine();
+                        Console.Write("Valor do Contrato: ");
+                        double valor = double.Parse(Console.ReadLine());
+                        Console.Write("Prazo: ");
+                        double prazo = double.Parse(Console.ReadLine());
+                        Console.Write("CPF: ");
+                        int cpf = int.Parse(Console.ReadLine());
+                        Console.Write("Digite sua idade: ");
+                        int idadeContratante = int.Parse(Console.ReadLine());
+
+                        PessoaFisica f = new PessoaFisica();
+                        f.calcularPrestacao();
+                        list.Add(new PessoaFisica(numero, contratante, valor, prazo, cpf, idadeContratante));
+                        break;
+
+                    case 'J':
+                    case 'j':
+                        Console.WriteLine();
+                        Console.Write("Numero do contrato: ");
+                        numero = int.Parse(Console.ReadLine());
+                        Console.Write("Nome do Contratante: ");
+                        contratante = Console.ReadLine();
+                        Console.Write("Valor do Contrato: ");
+                        valor = double.Parse(Console.ReadLine());
+                        Console.Write("Prazo: ");
+                        prazo = double.Parse(Console.ReadLine());
+                        Console.Write("Cnpj: ");
+                        int cnpj = int.Parse(Console.ReadLine());
+                        Console.Write("Inscrição Estadual: ");
+                        int inscricaoEstadual = int.Parse(Console.ReadLine());
+
+                        PessoaJuridica j = new PessoaJuridica();
+                        j.calcularPrestacao();
+                        list.Add(new PessoaJuridica(numero, contratante, valor, prazo, cnpj, inscricaoEstadual));
+                        break;
+
+                    default:
+                        list.Add(new Contrato());
+                        break;
+                }
+                foreach (Contrato m in list)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(m.exibirInfo());
+                }
+            }
+                     Console.ReadKey();
+                     Console.ReadKey(); 
